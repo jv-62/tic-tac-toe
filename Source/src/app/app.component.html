@@ -1,25 +1,71 @@
-<div class="container">
-  <div class="row justify-content-center align-items-center">
-    <div class="col col-lg-6">
-      <div class="text-center">
-        <h1 [hidden]="isCross" class="text-uppercase text-danger">Player One Turn</h1>
-        <h1 [hidden]="!isCross" class="text-uppercase text-danger">Player Two Turn</h1>
-      </div>
-      <div class="grid">
-        <div *ngFor="let item of itemArray; index as i">
-          <div class="card">
-            <div class="card-box box" (click)="handleClick(i)">
-              <app-icon [iconName]='item'></app-icon>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col col-lg-6 text-center" *ngIf="winMessage">
-      <h1 class="text-uppercase">
-        Game over {{ winMessage }}
-      </h1>
-      <button (click)="reloadGame()" class="btn btn-danger text-uppercase pl-5 pr-5">Reload Game</button>
-    </div>
-  </div>
+<div class="game-wrapper">
+	<div class="game-container">
+		<div class="game-header">
+			<h1 class="game-title">TIC TAC TOE</h1>
+			<div class="player-info">
+				<span class="player-label">Current Player:</span>
+				<span
+					class="player-turn"
+					[ngClass]="isCross ? 'player-two' : 'player-one'"
+				>
+					{{ !isCross ? '⭕ Player One' : '❌ Player Two' }}
+				</span>
+			</div>
+		</div>
+
+		<div class="grid">
+			<div
+				*ngFor="let item of itemArray; index as i"
+				class="grid-cell"
+				(click)="handleClick(i)"
+			>
+				<div class="cell-content">
+					<app-icon [iconName]="item"></app-icon>
+				</div>
+			</div>
+		</div>
+
+		<div class="poppers-container" *ngIf="showPoppers">
+			<div
+				*ngFor="let popper of poppers"
+				class="popper"
+				[attr.data-id]="popper.id"
+			>
+				{{ popper.emoji }}
+			</div>
+		</div>
+
+		<div class="game-over-container" *ngIf="winMessage">
+			<div
+				class="game-over-modal"
+				[ngClass]="isGameDraw ? 'draw-modal' : 'win-modal'"
+			>
+				<div
+					class="game-over-content"
+					[ngClass]="isGameDraw ? 'draw-content' : 'win-content'"
+				>
+					<h2
+						class="game-over-title"
+						[ngClass]="isGameDraw ? 'draw-title' : 'win-title'"
+					>
+						<span *ngIf="!isGameDraw">🎉 Game Over! 🎉</span>
+						<span *ngIf="isGameDraw">🤝 It's a Draw! 🤝</span>
+					</h2>
+					<p
+						class="game-over-message"
+						[ngClass]="isGameDraw ? 'draw-message' : 'win-message'"
+					>
+						{{ winMessage }}
+					</p>
+					<button
+						(click)="reloadGame()"
+						class="btn-reload"
+						[ngClass]="isGameDraw ? 'btn-draw' : 'btn-win'"
+					>
+						Start New Game
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

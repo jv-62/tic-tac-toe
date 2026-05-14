@@ -1,5 +1,30 @@
 .icon {
-  font-size: 35px;
-  color: #000000;
-  font-weight: bolder;
+  font-size: 50px;
+  font-weight: 900;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+}
+
+.icon.text-info {
+  color: #667eea;
+  animation: popAnimation 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.icon.text-warning {
+  color: #f5576c;
+  animation: popAnimation 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popAnimation {
+  0% {
+    transform: scale(0) rotateZ(-15deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotateZ(5deg);
+  }
+  100% {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+  }
 }

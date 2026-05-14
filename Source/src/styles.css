@@ -2,13 +2,37 @@
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~ngx-toastr/toastr";
+
 *, *::after, *::before {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
     position: relative;
-    background-image: url(./assets/bgc.jpg);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+/* Customize toastr styling */
+.toast {
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.toast-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
